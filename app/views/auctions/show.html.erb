@@ -8,16 +8,23 @@
   <%= f.submit %>
 
 <% end %>
-
-<% if @bids %>
-  <% @bids.each do |bid| %>
-    <div>
-      <%= bid.price %>$ at <%= bid.created_at.strftime("%d %b. %Y") %>
-    </div>
+<div style="display: inline-block">
+  <% if @bids %>
+  Previous Bids
+  <hr>
+    <% @bids.each do |bid| %>
+      <div>
+        <%= bid.price %>$ at <%= bid.created_at.strftime("%d %b. %Y") %>
+      </div>
+    <% end %>
   <% end %>
-<% end %>
+</div>
+<div class="">
+<br>
 
-Current Price:  $<%= @auction.current_price %>
+  Current Price:  $<%= @auction.current_price %>
+  <br><br>
+</div>
 <div>
   <% if @auction.current_price && @auction.current_price >= @auction.reserve_price %>
 
