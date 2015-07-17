@@ -1,0 +1,31 @@
+<h1><%= @auction.title %></h1>
+
+<h3><%= @auction.details %></h3>
+
+<%= simple_form_for [@auction, @bid] do |f| %>
+
+  <%= f.input :price %>
+  <%= f.submit %>
+
+<% end %>
+
+<% if @bids %>
+  <% @bids.each do |bid| %>
+    <div>
+      <%= bid.price %>$ at <%= bid.created_at.strftime("%d %b. %Y") %>
+    </div>
+  <% end %>
+<% end %>
+
+Current Price:  $<%= @auction.current_price %>
+<div>
+  <% if @auction.current_price && @auction.current_price >= @auction.reserve_price %>
+
+    Reserve price met
+
+  <% else %>
+
+    Reserve Price Not Met
+
+  <% end %>
+</div>
